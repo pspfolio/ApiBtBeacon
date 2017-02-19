@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BTBeaconAPI", "src\BTBeaconAPI\BTBeaconAPI.xproj", "{96218AF8-7E0B-4970-9B0A-9E1EC3C2425E}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BTBeaconAPI.Services", "src\BTBeaconAPI.Services\BTBeaconAPI.Services.xproj", "{106D668B-0FBB-4AB6-B369-9CBCC2FBD541}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BTBeaconAPI.Data", "src\BTBeaconAPI.Data\BTBeaconAPI.Data.xproj", "{2CF48B59-BFA4-4FF0-882B-3EC899E0C3C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +26,21 @@ Global
 		{96218AF8-7E0B-4970-9B0A-9E1EC3C2425E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96218AF8-7E0B-4970-9B0A-9E1EC3C2425E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96218AF8-7E0B-4970-9B0A-9E1EC3C2425E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{106D668B-0FBB-4AB6-B369-9CBCC2FBD541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{106D668B-0FBB-4AB6-B369-9CBCC2FBD541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{106D668B-0FBB-4AB6-B369-9CBCC2FBD541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{106D668B-0FBB-4AB6-B369-9CBCC2FBD541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF48B59-BFA4-4FF0-882B-3EC899E0C3C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF48B59-BFA4-4FF0-882B-3EC899E0C3C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF48B59-BFA4-4FF0-882B-3EC899E0C3C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF48B59-BFA4-4FF0-882B-3EC899E0C3C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{96218AF8-7E0B-4970-9B0A-9E1EC3C2425E} = {768193D9-C2E8-4200-AA3D-55F835EC7A53}
+		{106D668B-0FBB-4AB6-B369-9CBCC2FBD541} = {768193D9-C2E8-4200-AA3D-55F835EC7A53}
+		{2CF48B59-BFA4-4FF0-882B-3EC899E0C3C3} = {768193D9-C2E8-4200-AA3D-55F835EC7A53}
 	EndGlobalSection
 EndGlobal
