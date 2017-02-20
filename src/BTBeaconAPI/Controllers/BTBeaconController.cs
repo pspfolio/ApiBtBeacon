@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BTBeaconAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,17 @@ namespace BTBeaconAPI.Controllers
 	[Route("api/beacon")]
 	public class BTBeaconController : Controller
 	{
-		[HttpGet("")]
-		public IActionResult GetAsync()
+		private readonly IBeaconService _beaconService;
+		public BTBeaconController(IBeaconService beaconService)
 		{
-			return Ok(new { Name = "BT", Message = "Jou!" });
+			_beaconService = beaconService;
+		}
+
+		[HttpGet("{guid}")]
+		public IActionResult GetAsync(Guid guid)
+		{
+			var result = _beaconService.GetByGuid(guid);
+			return Ok(result);
 		}
 	}
 }

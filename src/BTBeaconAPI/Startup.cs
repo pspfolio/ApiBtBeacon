@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using BTBeaconAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using BTBeaconAPI.Data.Seed;
+using BTBeaconAPI.Services;
+using BTBeaconAPI.Services.Interfaces;
 
 namespace BTBeaconAPI
 {
@@ -42,6 +44,7 @@ namespace BTBeaconAPI
 			services.AddApplicationInsightsTelemetry(_config);
 
 			services.AddDbContext<BeaconContext>(options => options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Beacon;Trusted_Connection=True;MultipleActiveResultSets=true"));
+			services.AddScoped<IBeaconService, BeaconService>();
 			services.AddTransient<BeaconDbInitializer>();
 
 			services.AddMvc();
