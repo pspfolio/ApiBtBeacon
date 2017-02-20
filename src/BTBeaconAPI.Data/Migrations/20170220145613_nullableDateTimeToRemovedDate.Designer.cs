@@ -8,9 +8,10 @@ using BTBeaconAPI.Data;
 namespace BTBeaconAPI.Data.Migrations
 {
     [DbContext(typeof(BeaconContext))]
-    partial class BeaconContextModelSnapshot : ModelSnapshot
+    [Migration("20170220145613_nullableDateTimeToRemovedDate")]
+    partial class nullableDateTimeToRemovedDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -25,6 +26,8 @@ namespace BTBeaconAPI.Data.Migrations
 
                     b.Property<Guid>("Guid");
 
+                    b.Property<int>("MessageId");
+
                     b.Property<string>("Name");
 
                     b.Property<bool>("Removed");
@@ -35,6 +38,9 @@ namespace BTBeaconAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MessageId")
+                        .IsUnique();
+
                     b.ToTable("Beacons");
                 });
 
@@ -43,25 +49,20 @@ namespace BTBeaconAPI.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BeaconId");
-
                     b.Property<string>("Content");
 
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BeaconId")
-                        .IsUnique();
-
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("BTBeaconAPI.Data.Entities.Message", b =>
+            modelBuilder.Entity("BTBeaconAPI.Data.Entities.Beacon", b =>
                 {
-                    b.HasOne("BTBeaconAPI.Data.Entities.Beacon", "Beacon")
-                        .WithOne("Message")
-                        .HasForeignKey("BTBeaconAPI.Data.Entities.Message", "BeaconId")
+                    b.HasOne("BTBeaconAPI.Data.Entities.Message", "Message")
+                        .WithOne("Beacon")
+                        .HasForeignKey("BTBeaconAPI.Data.Entities.Beacon", "MessageId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

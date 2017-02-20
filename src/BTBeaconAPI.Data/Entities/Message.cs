@@ -11,6 +11,7 @@ namespace BTBeaconAPI.Data.Entities
 		public string Title { get; set; }
 		public string Content { get; set; }
 
+		public int BeaconId { get; set; }
 		public Beacon Beacon { get; set; }
 	}
 }

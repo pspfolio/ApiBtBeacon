@@ -10,12 +10,12 @@ namespace BTBeaconAPI.Data
 	public class BeaconContext : DbContext
 	{
 
-		public DbSet<Beacon> Beacon { get; set; }
-		public DbSet<Message> Message { get; set; }
+		public BeaconContext(DbContextOptions<BeaconContext> options)
+			:base(options)
+		{ }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Beacon;Trusted_Connection=True;MultipleActiveResultSets=true");
-		}
+		public DbSet<Beacon> Beacons { get; set; }
+		public DbSet<Message> Messages { get; set; }
+
 	}
 }

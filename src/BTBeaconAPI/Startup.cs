@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using BTBeaconAPI.Data;
+using Microsoft.EntityFrameworkCore;
+using BTBeaconAPI.Data.Seed;
 
 namespace BTBeaconAPI
 {
@@ -38,11 +41,14 @@ namespace BTBeaconAPI
 			// Add framework services.
 			services.AddApplicationInsightsTelemetry(_config);
 
+			services.AddDbContext<BeaconContext>(options => options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Beacon;Trusted_Connection=True;MultipleActiveResultSets=true"));
+			services.AddTransient<BeaconDbInitializer>();
+
 			services.AddMvc();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, BeaconDbInitializer seeder)
 		{
 			loggerFactory.AddConsole(_config.GetSection("Logging"));
 			loggerFactory.AddDebug();
@@ -52,6 +58,8 @@ namespace BTBeaconAPI
 			app.UseApplicationInsightsExceptionTelemetry();
 
 			app.UseMvc();
+
+			seeder.Seed().Wait();
 		}
 	}
 }

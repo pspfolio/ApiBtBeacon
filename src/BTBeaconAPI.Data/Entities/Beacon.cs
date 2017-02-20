@@ -13,9 +13,8 @@ namespace BTBeaconAPI.Data.Entities
 		public string Description { get; set; }
 		public bool Status { get; set; }
 		public bool Removed { get; set; }
-		public DateTime RemovedDate { get; set; }
+		public DateTime? RemovedDate { get; set; }
 
-		public int MessageId { get; set; }
 		public Message Message { get; set; }
 	}
 }
