@@ -24,7 +24,7 @@ namespace BTBeaconAPI.Data.Seed
 				{
 					Title = "Title",
 					Content = "This is message",
-					BeaconId = 1
+					BeaconGuid = new Guid()
 				}
 			}
 		};
