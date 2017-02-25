@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BTBeaconAPI.Data.Entities;
 using BTBeaconAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BTBeaconAPI.Services
 {
@@ -15,9 +16,9 @@ namespace BTBeaconAPI.Services
 		{
 			_context = context;
 		}
-		public Beacon GetByGuid(Guid guid)
+		public async Task<Beacon> GetByGuidAsync(Guid guid)
 		{
-			var result = _context.Beacons.FirstOrDefault(x => x.Guid == guid);
+			var result = await _context.Beacons.FirstOrDefaultAsync(x => x.Guid == guid);
 			return result;
 		}
 	}

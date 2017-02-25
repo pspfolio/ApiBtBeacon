@@ -17,10 +17,11 @@ namespace BTBeaconAPI.Controllers
 		}
 
 		[HttpGet("{guid}")]
-		public IActionResult GetAsync(Guid guid)
+		public async Task<IActionResult> GetAsync(Guid guid)
 		{
-			var result = _beaconService.GetByGuid(guid);
+			var result = await _beaconService.GetByGuidAsync(guid);
 			return Ok(result);
 		}
+		
 	}
 }

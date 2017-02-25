@@ -8,6 +8,6 @@ namespace BTBeaconAPI.Services.Interfaces
 {
 	public interface IBeaconService
 	{
-		Beacon GetByGuid(Guid guid);
+		Task<Beacon> GetByGuidAsync(Guid guid);
 	}
 }
