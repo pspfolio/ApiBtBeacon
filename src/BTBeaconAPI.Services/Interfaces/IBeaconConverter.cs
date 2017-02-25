@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace BTBeaconAPI.Services.Interfaces
 {
-	public interface IBeaconService
+	public interface IBeaconConverter
 	{
-		Task<Beacon> GetByGuidAsync(Guid guid);
-
-		Task<Beacon> AddAsync(BeaconDto beacon);
+		Beacon ConvertDtoToBeacon(BeaconDto beaconDto);
 	}
 }

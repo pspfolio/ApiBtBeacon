@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using BTBeaconAPI.Data.Seed;
 using BTBeaconAPI.Services;
 using BTBeaconAPI.Services.Interfaces;
+using BTBeaconAPI.Services.Converters;
 
 namespace BTBeaconAPI
 {
@@ -45,6 +46,7 @@ namespace BTBeaconAPI
 
 			services.AddDbContext<BeaconContext>(options => options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Beacon;Trusted_Connection=True;MultipleActiveResultSets=true"));
 			services.AddScoped<IBeaconService, BeaconService>();
+			services.AddScoped<IBeaconConverter, BeaconConverter>();
 			services.AddTransient<BeaconDbInitializer>();
 
 			services.AddMvc();

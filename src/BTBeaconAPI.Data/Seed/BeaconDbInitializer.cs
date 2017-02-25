@@ -10,25 +10,6 @@ namespace BTBeaconAPI.Data.Seed
 	{
 		private BeaconContext _context;
 
-		List<Beacon> _initData = new List<Beacon>
-		{
-			new Beacon
-			{
-				Guid = new Guid(),
-				Name = "Beacon 1",
-				Description = "Beacon to show messages",
-				Status = true,
-				Removed = false,
-				RemovedDate = null,
-				Message = new Message()
-				{
-					Title = "Title",
-					Content = "This is message",
-					BeaconGuid = new Guid()
-				}
-			}
-		};
-
 		public BeaconDbInitializer(BeaconContext context)
 		{
 			_context = context;
@@ -36,11 +17,33 @@ namespace BTBeaconAPI.Data.Seed
 
 		public async Task Seed()
 		{
-			if(!_context.Beacons.Any())
+			if (!_context.Beacons.Any())
 			{
-				_context.AddRange(_initData);
+				_context.AddRange(getInitData(Guid.NewGuid()));
 				await _context.SaveChangesAsync();
 			}
+		}
+
+		private ICollection<Beacon> getInitData(Guid guid)
+		{
+			return new List<Beacon>
+				{
+					new Beacon
+					{
+						Guid = guid,
+						Name = "Beacon 1",
+						Description = "Beacon to show messages",
+						Status = true,
+						Removed = false,
+						RemovedDate = null,
+						Message = new Message()
+						{
+							BeaconGuid = guid,
+							Title = "Title",
+							Content = "This is message",
+						}
+					}
+				};
 		}
 	}
 }
