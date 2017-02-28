@@ -1,5 +1,6 @@
 ﻿using BTBeaconAPI.Services.Interfaces;
 using BTBeaconAPI.Services.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace BTBeaconAPI.Controllers
 			_beaconService = beaconService;
 		}
 
+		[Authorize]
 		[HttpGet("{guid}", Name = "BeaconGet")]
 		public async Task<IActionResult> GetAsync(Guid guid) {
 			try {
@@ -44,7 +46,6 @@ namespace BTBeaconAPI.Controllers
 
 			}
 			return BadRequest();
-
 		}
 		
 		

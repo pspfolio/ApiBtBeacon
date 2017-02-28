@@ -13,6 +13,9 @@ using BTBeaconAPI.Data.Seed;
 using BTBeaconAPI.Services;
 using BTBeaconAPI.Services.Interfaces;
 using BTBeaconAPI.Services.Converters;
+using BTBeaconAPI.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BTBeaconAPI
 {
@@ -49,6 +52,35 @@ namespace BTBeaconAPI
 			services.AddScoped<IBeaconConverter, BeaconConverter>();
 			services.AddTransient<BeaconDbInitializer>();
 
+			services.AddIdentity<User, IdentityRole>()
+				.AddEntityFrameworkStores<BeaconContext>();
+
+			services.Configure<IdentityOptions>(config =>
+			{
+				config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+				{
+					OnRedirectToLogin = (ctx) =>
+					{
+						if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+						{
+							ctx.Response.StatusCode = 401;
+						}
+
+						return Task.CompletedTask;
+					},
+
+					OnRedirectToAccessDenied = (ctx) =>
+					{
+						if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+						{
+							ctx.Response.StatusCode = 403;
+						}
+
+						return Task.CompletedTask;
+					}
+				};
+			});
+
 			services.AddMvc();
 		}
 
@@ -61,6 +93,8 @@ namespace BTBeaconAPI
 			app.UseApplicationInsightsRequestTelemetry();
 
 			app.UseApplicationInsightsExceptionTelemetry();
+
+			app.UseIdentity();
 
 			app.UseMvc();
 

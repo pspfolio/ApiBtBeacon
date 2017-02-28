@@ -8,9 +8,10 @@ using BTBeaconAPI.Data;
 namespace BTBeaconAPI.Data.Migrations
 {
     [DbContext(typeof(BeaconContext))]
-    partial class BeaconContextModelSnapshot : ModelSnapshot
+    [Migration("20170228143029_identity_first")]
+    partial class identity_first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
