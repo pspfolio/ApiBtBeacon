@@ -50,6 +50,7 @@ namespace BTBeaconAPI
 			services.AddDbContext<BeaconContext>(options => options.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Beacon;Trusted_Connection=True;MultipleActiveResultSets=true"));
 			services.AddScoped<IBeaconService, BeaconService>();
 			services.AddScoped<IBeaconConverter, BeaconConverter>();
+			services.AddScoped<IBeaconAuthService, BeaconAuthService>();
 			services.AddTransient<BeaconDbInitializer>();
 
 			services.AddIdentity<User, IdentityRole>()

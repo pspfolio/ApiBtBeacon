@@ -11,5 +11,7 @@ namespace BTBeaconAPI.Data.Entities
 		public string Firstname { get; set; }
 		public string Lastname { get; set; }
 
+	
+
 	}
 }
